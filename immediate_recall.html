@@ -87,7 +87,7 @@
 			  url: 'php/save_data.php', // this is the path to the PHP script
 			  data: {filename: filename, filedata: filedata},
 			  success: function(){
-				  $("#jspsych_target").html("<a href=\"\">Go to next experiment.</a>");
+				  $("#jspsych_target").html("<p><a href=\"http://localhost/jsPsych-quickstart/immediate_recall.html\">Restart experiment</a></p>");
 			  }
 		   });
 		}
@@ -97,7 +97,7 @@
 			display_element: $('#jspsych_target'),
 			experiment_structure: [instruction_block, text_1, questions_1, text_2, questions_2, text_3, questions_3, debrief_block],
 			on_finish: function(data){
-				$("#jspsych_target").html("<p><a href=\"http://localhost/jsPsych-quickstart/immediate_recall.html\">Restart experiment</a></p><p><a href=\"\">Go to next experiment.</a></p>");
+				saveData("immediateRecall_" + $.now() + ".csv", jsPsych.dataAPI.dataAsCSV());
 			}
 		});
     </script>
