@@ -96,7 +96,7 @@ button:hover {
 
 
 .jspsych-display-element {
-    width: 800px;
+    width: 1300px;
     margin: 50px auto 50px auto;
 }
 
@@ -140,6 +140,9 @@ button:hover {
  }
  
  #jspsych_target{
-	 background: url(../img/bg.png) center center repeat-y;
 	 min-height: 452px;
+ }
+ 
+ .justify{
+	 text-align: justify;
  }
