@@ -12,7 +12,12 @@
  *
  */
  
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700);
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../fonts/OpenSans-Regular.ttf);
+}
 
 html {
  font-family: 'Open Sans', 'Arial', sans-serif;
@@ -119,4 +124,22 @@ button:hover {
  
  .jspsych-survey-text-question {
      margin: 2em 0em;
+ }
+ 
+/*
+ *
+ * Reading Experiment
+ *
+ */
+ 
+ #instructions{
+	 background: #FFF;
+	 height: 452px;
+	 width: 100%;
+	 text-align: center;
+ }
+ 
+ #jspsych_target{
+	 background: url(../img/bg.png) center center repeat-y;
+	 min-height: 452px;
  }
