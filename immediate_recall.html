@@ -9,6 +9,7 @@
         <script src="scripts/jspsych.js"></script>
         <script src="scripts/plugins/jspsych-text.js"></script>
         <script src="scripts/plugins/jspsych-survey-textarea.js"></script>
+        <script src="scripts/plugins/jspsych-call-function.js"></script>
         <!-- Load the stylesheet -->
         <link href="css/jspsych.css" type="text/css" rel="stylesheet"></link>
     </head>
@@ -19,8 +20,8 @@
     
     <script type="text/javascript">
         // Experiment Instructions
-        var instructions = '<div id="instructions"><p>You will read three texts. The researcher will instruct you on how you will read each text.</p><p>After reading each text, you will be asked to type everything you remember about the text and to type what is its general idea.</p>\
-            <p>Press enter to start.</p>';
+        var instructions = '<div id="instructions" class="center"><p>You will read three texts. The researcher will instruct you on how you will read each text.</p><p>After reading each text, you will be asked to type everything you remember about the text and to type what is its general idea.</p>\
+            <p>Press enter to start.</p></div>';
 			
 		var text_1 = "<p class=\"justify\">Scientists have developed a gel that helps brains recover from traumatic injuries. It has the potential to treat head injuries suffered in combat, car accidents, falls, or gunshot wounds. Developed by Dr. Ning Zhang at Clemson University in South Carolina, the gel is injected in liquid form at the site of injury and stimulates the growth of stem cells there.</p><p class=\"justify\">Brain injuries are particularly hard to repair, since injured tissues swell up and can cause additional damage to the cells. So far, treatments have tried to limit this secondary damage by lowering the temperature or relieving the pressure at the site of injury. However, these techniques are often not very effective.</p><p class=\"justify\">More recently, scientists have considered transplanting donor brain cells into the wound to repair damaged tissue. This method has so far had limited results when treating brain injuries. The donor cells often fail to grow or stimulate repair at the injury site, possibly because of the inflammation and scarring present there. The injury site also typically has very limited blood supply and connective tissue, which might prevent donor cells from getting the nutrients they require.</p><p class=\"justify\">Dr. Zhang's gel, however, can be loaded with different chemicals to stimulate various biological processes at the site of injury. In previous research done on rats, she was able to use the gel to help re-establish full blood supply at the site of brain injury. This could help create a better environment for donor cells.</p><p class=\"justify\">In a follow-up study, Dr. Zhang loaded the gel with immature stem cells, as well as the chemicals they needed to develop into full-fledged adult brain cells. When rats with severe brain injuries were treated with this mixture for eight weeks, they showed signs of significant recovery.</p><p class=\"justify\">The new gel could treat patients at varying stages following injury, and is expected to be ready for testing in humans in about three years.</p>";
 		

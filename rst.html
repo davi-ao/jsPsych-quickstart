@@ -1,0 +1,278 @@
+<!doctype html>
+<html>
+    
+    <head>
+    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Reading experiment</title>
+        <!-- Load jQuery -->
+        <script src="scripts/jquery.min.js"></script>
+        <!-- Load the jspsych library and plugins -->
+        <script src="scripts/jspsych.js"></script>
+        <script src="scripts/plugins/jspsych-text.js"></script>
+        <script src="scripts/plugins/jspsych-survey-text.js"></script>
+        <!-- Load the stylesheet -->
+        <link href="css/jspsych.css" type="text/css" rel="stylesheet"></link>
+    </head>
+    
+    <body>
+        <div id="jspsych_target"></div>
+    </body>
+    
+    <script type="text/javascript">
+        // Experiment Instructions
+        var instructions = '<div id="instructions"><p>You will read three texts. The researcher will instruct you on how you will read each text.</p><p>After reading each text, you will be asked to type everything you remember about the text and to type what is its general idea.</p>\
+            <p>Press enter to start.</p>';
+		
+		//Sentences	
+		var sentence_1_1_1 = "<h2>O intelsat-6 foi lançado em 1990, mas nunca funcionou – ficou numa órbita errada.</h2>";
+		var sentence_1_1_2 = "<h2>A iniciativa deve partir da própria pessoa interessada em ter um corpo bonito e saudável.</h2>";
+		
+		var sentence_1_2_1 = "<h2>Ele é uma pessoa que gosta de contar a todos o que anda fazendo, nos mínimos detalhes.</h2>";
+		var sentence_1_2_2 = "<h2>As bactérias degradam as emulsões coloridas do filme, criando imagens que podem ser definidas como futuristas.</h2>";
+		
+		var sentence_1_3_1 = "<h2>A padronização agrícola, para atender aos consumidores, ameaça a diversidade biológica do mundo vegetal.</h2>";
+		var sentence_1_3_2 = "<h2>Os diálogos acontecem ao mesmo tempo, e cabe ao espectador escolher para onde dirigir sua atenção.</h2>";
+		
+		var sentence_2_1_1 = "<h2>Para realizar as atividades cerebrais do pensamento, os neurônios tiram energia do oxigênio e da glicose.</h2>";
+		var sentence_2_1_2 = "<h2>O truque, portanto, é partir triunfante rumo ao objetivo antes do início da partida.</h2>";
+		var sentence_2_1_3 = "<h2>Cerca de 250 milhões de pessoas, ao redor do mundo, se encontram na mais profunda depressão.</h2>";
+		
+		var sentence_2_2_1 = "<h2>O repórter não deu grande importância à frase, mas esse parecia ser justamente o segredo do sucesso.</h2>";
+		var sentence_2_2_2 = "<h2>Uma manifestação estudantil ontem em Brasília foi marcada por atritos com a polícia.</h2>";
+		var sentence_2_2_3 = "<h2>Mostra a capacidade do homem em transformar coisas simples em obras de arte, através da dedicação.</h2>";
+		
+		var sentence_2_3_1 = "<h2>A expressão refere-se à tentativa de conciliar o progresso com a preservação da natureza.</h2>";
+		var sentence_2_3_2 = "<h2>Cada volume traz textos inéditos escritos por psicólogos e psicanalistas, todos especialistas no assunto.</h2>";
+		var sentence_2_3_3 = "<h2>Pesquisa do Sebrae apontaque o novo salário mínimo deve provocar umaonda de demissões.</h2>";
+		
+		var sentence_3_1_1 = "<h2>Se o Brasil pretende ir ao espaço sem pedir licença, não pode dispensar um programa de foguetes.</h2>";
+		var sentence_3_1_2 = "<h2>O médico deve levar em conta a idade, número de filhos e saúde do paciente.</h2>";
+		var sentence_3_1_3 = "<h2>Soube que o marido não ganhou o direito de protestar contra o abandono em momento tão delicado.</h2>";
+		var sentence_3_1_4 = "<h2>Nós pedimos para o mundo falar e a mensagem soou alta, clara e extraordinariamente perfeita.</h2>";
+		
+		var sentence_3_2_1 = "<h2>A obra custou caro demais, autilidade é incerta e o resultado final, polêmico.</h2>";
+		var sentence_3_2_2 = "<h2>É a primeira vez que se consegue em órbita a ovulação e fertilização de espécies animais.</h2>";
+		var sentence_3_2_3 = "<h2>Os fabricantes de microcomputadores estão criando produtos com novas tecnologias, a preços mais atraentes.</h2>";
+		var sentence_3_2_4 = "<h2>Pesquisadores descobrem que o antílope das pradarias norte-americanas é o mais resistentes dos mamíferos terrestres.</h2>";
+		
+		var sentence_3_3_1 = "<h2>O neandertal tinha testa curta e grossa, mandíbula forte, de queixo curto, e seus ossos eram pesados.</h2>";
+		var sentence_3_3_2 = "<h2>Reconhecer a importância da identidade social abre as portas para novas possibilidades de reflexão.</h2>";
+		var sentence_3_3_3 = "<h2>Às vésperas do fim da reserva da informática, cresce a pressão por novos privilégios e favores.</h2>";
+		var sentence_3_3_4 = "<h2>Seu público eram as pessoas que olham muito para a pechincha e pouco para a qualidade.</h2>";
+		
+		var sentence_4_1_1 = "<h2>O Brasil reforça suapresença no milionário clubeda telefonia celularcom o anúncio de novos editais.</h2>";
+		var sentence_4_1_2 = "<h2>Quando o cineasta dá rédea solta ao puro amor pelas imagens, o filme arrebata os sentidos.</h2>";
+		var sentence_4_1_3 = "<h2>Na catarata, a vítima perde a visão gradualmente porque as células do cristalino tornam-se mais opacas.</h2>";
+		var sentence_4_1_4 = "<h2>É difícil acreditar no acidente que interrompeu a arrancada do trem voador japonês, rumo às rotas comerciais.</h2>";
+		var sentence_4_1_5 = "<h2>Os conservadores usarame abusaram das teses de perversidade, da futilidade e da ameaça.</h2>";
+		
+		var sentence_4_2_1 = "<h2>Elas mostraram sinais de rotas das caravanas de mercadores, que levaram os pesquisadores à cidade.</h2>";
+		var sentence_4_2_2 = "<h2>Cartão-postal sob suspeita: radiação eletromagnética das antenas da Avenida Paulista pode afetar a saúde humana.</h2>";
+		var sentence_4_2_3 = "<h2>O investidor pode estar procurando a segurança doouro, um investimentotradicional, neste momento de crise política.</h2>";
+		var sentence_4_2_4 = "<h2>As fêmeas dosescorpiões só deixavamos abrigos dez vezes porano, no máximo.</h2>";
+		var sentence_4_2_5 = "<h2>O caso de Jill continua sendo estudado por especialistas que buscam soluções para doenças relacionadas à memória.</h2>";
+		
+		var sentence_4_3_1 = "<h2>Os satélites ajudam os oceanógrafos a descobrir atemperatura da água em diversos locais do planeta.</h2>";
+		var sentence_4_3_2 = "<h2>Nos casos de históricos de vida sedentária, evitar esportes anaeróbicos que exigem melhor condicionamento físico.</h2>";
+		var sentence_4_3_3 = "<h2>Catástrofes à parte, a maior atração da viagem são a própria Galáxia e seus incríveis habitantes.</h2>";
+		var sentence_4_3_4 = "<h2>O computador mostrou que,mesmo sem se quebrarem, alguns capacetes transmitem muita energia mecânica para a cabeça.</h2>";
+		var sentence_4_3_5 = "<h2>A saúde instável do presidenteserviu como outro elemento psicológico do ataque de nervosdo mercado.</h2>";
+		
+		var sentence_5_1_1 = "<h2>É a primeira vez que o Brasil vendetênis em quantidades expressivas no exterior.</h2>";
+		var sentence_5_1_2 = "<h2>O resto é luz do céu, claridade que desce da lua prateando a superfície gelada.</h2>";
+		var sentence_5_1_3 = "<h2>O IBGE lançou um Atlas que mostra trezentas e três espécies de animais ameaçadas de extinção.</h2>";
+		var sentence_5_1_4 = "<h2>O equipamento tem memória que permite dar ao usuário detalhes sobre eventuais defeitos em processos industriais.</h2>";
+		var sentence_5_1_5 = "<h2>Os bosques de mangues, regados pelas marés, garantem comida farta para a fauna dos oceanos.</h2>";
+		var sentence_5_1_6 = "<h2>Hoje, quando o planeta é visto de cima pelos satélites, seus contornos não têm mais segredo.</h2>";
+		
+		var sentence_5_2_1 = "<h2>Mesmo sem saber o índice de queda nas vendas, desvalorizou as ações da empresa.</h2>";
+		var sentence_5_2_2 = "<h2>Para os oitenta milhões de telespectadores brasileiros, a televisão significa lazer acessível e barato.</h2>";
+		var sentence_5_2_3 = "<h2>É preciso desmontar os motores em terra para prever as falhas, trabalho que consome tempo e dinheiro.</h2>";
+		var sentence_5_2_4 = "<h2>O paciente precisa de ressuscitação cardiorrespiratória o mais rápido possível, feita por pessoas treinadas.</h2>";
+		var sentence_5_2_5 = "<h2>Segundo Senna, a chuva fez com que o desgaste dos pneus fosse excessivo na corrida.</h2>";
+		var sentence_5_2_6 = "<h2>O povo com certeza irá ocupar as ruas para mostrar aos deputados o que querem seus eleitores.</h2>";
+		
+		var sentence_5_3_1 = "<h2>O telefone celular pode ser usado em qualquer ponto da cidade coberto por uma célula.</h2>";
+		var sentence_5_3_2 = "<h2>Grandes quantidades de sal tornama água mais pesada ou densa, diminuindo, em consequência,seu volume.</h2>";
+		var sentence_5_3_3 = "<h2>Como seres civilizados, deixamos as cavernas nas últimas glaciações, no início da Idade da Pedra Polida.</h2>";
+		var sentence_5_3_4 = "<h2>A desvalorização é o que mais dói no orgulho nacional e no bolso de suas vítimas.</h2>";
+		var sentence_5_3_5 = "<h2>Não existe uma regra para definir a melhor hora para dar uma pausa no trabalho.</h2>";
+		var sentence_5_3_6 = "<h2>Os efeitos do sal na pressão das artérias depende de outros minerais no organismo.</h2>";
+
+        var debrief = '<div id="instructions"><p>Thank you for participating! Press enter to continue.</p></div>';
+        
+        // Define experiment blocks
+        var instruction_block = {
+                type: "text",
+				cont_key: [13],
+                text: [instructions],
+                timing_post_trial: 0
+            };
+		
+		//Levels
+		var level_1_1 = {
+                type: "text",
+				cont_key: [13],
+                text: [sentence_1_1_1, sentence_1_1_2],
+                timing_post_trial: 0
+            };
+			
+		var level_1_2 = {
+                type: "text",
+				cont_key: [13],
+                text: [sentence_1_2_1, sentence_1_2_2],
+                timing_post_trial: 0
+            };
+			
+		var level_1_3 = {
+                type: "text",
+				cont_key: [13],
+                text: [sentence_1_3_1, sentence_1_3_2],
+                timing_post_trial: 0
+            };
+			
+		var level_2_1 = {
+                type: "text",
+				cont_key: [13],
+                text: [sentence_2_1_1, sentence_2_1_2, sentence_2_1_3],
+                timing_post_trial: 0
+            };
+			
+		var level_2_2 = {
+                type: "text",
+				cont_key: [13],
+                text: [sentence_2_2_1, sentence_2_2_2, sentence_2_2_3],
+                timing_post_trial: 0
+            };
+			
+		var level_2_3 = {
+                type: "text",
+				cont_key: [13],
+                text: [sentence_2_3_1, sentence_2_3_2, sentence_2_3_3],
+                timing_post_trial: 0
+            };
+			
+		var level_3_1 = {
+                type: "text",
+				cont_key: [13],
+                text: [sentence_3_1_1, sentence_3_1_2, sentence_3_1_3, sentence_3_1_4],
+                timing_post_trial: 0
+            };
+		
+		var level_3_2 = {
+                type: "text",
+				cont_key: [13],
+                text: [sentence_3_2_1, sentence_3_2_2, sentence_3_2_3, sentence_3_2_4],
+                timing_post_trial: 0
+            };
+			
+		var level_3_3 = {
+                type: "text",
+				cont_key: [13],
+                text: [sentence_3_3_1, sentence_3_3_2, sentence_3_3_3, sentence_3_3_4],
+                timing_post_trial: 0
+            };
+			
+		var level_4_1 = {
+                type: "text",
+				cont_key: [13],
+                text: [sentence_4_1_1, sentence_4_1_2, sentence_4_1_3, sentence_4_1_4, sentence_4_1_5],
+                timing_post_trial: 0
+            };
+			
+		var level_4_2 = {
+                type: "text",
+				cont_key: [13],
+                text: [sentence_4_2_1, sentence_4_2_2, sentence_4_2_3, sentence_4_2_4, sentence_4_2_5],
+                timing_post_trial: 0
+            };
+			
+		var level_4_3 = {
+                type: "text",
+				cont_key: [13],
+                text: [sentence_4_3_1, sentence_4_3_2, sentence_4_3_3, sentence_4_3_4, sentence_4_3_5],
+                timing_post_trial: 0
+            };
+			
+		var level_5_1 = {
+                type: "text",
+				cont_key: [13],
+                text: [sentence_5_1_1, sentence_5_1_2, sentence_5_1_3, sentence_5_1_4, sentence_5_1_5, sentence_5_1_6],
+                timing_post_trial: 0
+            };
+			
+		var level_5_2 = {
+                type: "text",
+				cont_key: [13],
+                text: [sentence_5_2_1, sentence_5_2_2, sentence_5_2_3, sentence_5_2_4, sentence_5_2_5, sentence_5_2_6],
+                timing_post_trial: 0
+            };
+			
+		var level_5_3 = {
+                type: "text",
+				cont_key: [13],
+                text: [sentence_5_3_1, sentence_5_3_2, sentence_5_3_3, sentence_5_3_4, sentence_5_3_5, sentence_5_3_6],
+                timing_post_trial: 0
+            };
+		
+		//Inputs	
+		var inputs_1 = ["1st", "2nd"];
+		var inputs_2 = ["1st", "2nd", "3rd"];
+		var inputs_3 = ["1st", "2nd", "3rd", "4th"];
+		var inputs_4 = ["1st", "2nd", "3rd", "4th", "5th"];
+		var inputs_5 = ["1st", "2nd", "3rd", "4th", "5th", "6th"];
+		
+        var set_1 = {
+                type: "survey-text",
+				questions: [inputs_1]
+            };
+			
+		var set_2 = {
+                type: "survey-text",
+				questions: [inputs_2]
+            };
+			
+		var set_3 = {
+                type: "survey-text",
+				questions: [inputs_3]
+            };
+			
+		var set_4 = {
+                type: "survey-text",
+				questions: [inputs_4]
+            };
+			
+		var set_5 = {
+                type: "survey-text",
+				questions: [inputs_5]
+            };
+        
+		//Debriefs    
+        var debrief_block = {
+                type: "text",
+                text: [debrief]
+            };
+		
+		//Save Data
+		function saveData(filename, filedata){
+		   $.ajax({
+			  type:'post',
+			  cache: false,
+			  url: 'php/save_data.php', // this is the path to the PHP script
+			  data: {filename: filename, filedata: filedata},
+			  success: function(){
+				  $("#jspsych_target").html("<p><a href=\"http://localhost/jsPsych-quickstart/immediate_recall.html\">Restart experiment</a></p>");
+			  }
+		   });
+		}
+		
+		// launch jspsych
+		jsPsych.init({
+			display_element: $('#jspsych_target'),
+			experiment_structure: [instruction_block, level_1_1, set_1, level_1_2, set_1, level_1_3, set_1, level_2_1, set_2, level_2_2, set_2, level_2_3, set_2, level_3_1, set_3, level_3_2, set_3, level_3_3, set_3, level_4_1, set_4, level_4_2, set_4, level_4_3, set_4, level_5_1, set_5, level_5_2, set_5, level_5_3, set_5, debrief_block],
+			on_finish: function(data){
+				saveData("RST_" + $.now() + ".csv", jsPsych.dataAPI.dataAsCSV());
+			}
+		});
+    </script>
+</html>

@@ -132,17 +132,20 @@ button:hover {
  *
  */
  
- #instructions{
-	 background: #FFF;
-	 height: 452px;
-	 width: 100%;
+ #jspsych_target{
+	 min-height: 452px;
 	 text-align: center;
  }
  
- #jspsych_target{
-	 min-height: 452px;
+ #jspsych-survey-textarea-0 textarea{
+	 height: 315px;
  }
  
  .justify{
 	 text-align: justify;
  }
+ 
+ textarea{
+	 width: 900px;
+ }
+ 
