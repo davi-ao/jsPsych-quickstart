@@ -8,7 +8,7 @@
         <!-- Load the jspsych library and plugins -->
         <script src="scripts/jspsych.js"></script>
         <script src="scripts/plugins/jspsych-text.js"></script>
-        <script src="scripts/plugins/jspsych-single-stim.js"></script>
+        <script src="scripts/plugins/jspsych-survey-textarea.js"></script>
         <script src="scripts/plugins/jspsych-call-function.js"></script>
         <!-- Load the stylesheet -->
         <link href="css/jspsych.css" type="text/css" rel="stylesheet"></link>
@@ -19,64 +19,67 @@
     </body>
     
     <script type="text/javascript">
-        // Experiment parameters
-        var n_trials_per_stimulus = 10;
-        
         // Experiment Instructions
-        var welcome_message = '<div id="instructions"><p>Welcome to the experiment. Press enter to begin.</p></div>';
-        
-        var instructions = '<div id="instructions"><h2>Visual-Spatial Task</h2><p>You will see a red dot either on the left or on the right side of a line.</p><p>Press the arrow key that corresponds to the position of the dot.</p>\
-            <p>Press enter to start.</p>';
+        var instructions = '<div id="instructions" class="center"><p>You will read three texts. The researcher will instruct you on how you will read each text.</p><p>After reading each text, you will be asked to type everything you remember about the text and to type what is its general idea.</p>\
+            <p>Press enter to start.</p></div>';
+			
+		var text_1 = "<p class=\"justify\">Scientists have developed a gel that helps brains recover from traumatic injuries. It has the potential to treat head injuries suffered in combat, car accidents, falls, or gunshot wounds. Developed by Dr. Ning Zhang at Clemson University in South Carolina, the gel is injected in liquid form at the site of injury and stimulates the growth of stem cells there.</p><p class=\"justify\">Brain injuries are particularly hard to repair, since injured tissues swell up and can cause additional damage to the cells. So far, treatments have tried to limit this secondary damage by lowering the temperature or relieving the pressure at the site of injury. However, these techniques are often not very effective.</p><p class=\"justify\">More recently, scientists have considered transplanting donor brain cells into the wound to repair damaged tissue. This method has so far had limited results when treating brain injuries. The donor cells often fail to grow or stimulate repair at the injury site, possibly because of the inflammation and scarring present there. The injury site also typically has very limited blood supply and connective tissue, which might prevent donor cells from getting the nutrients they require.</p><p class=\"justify\">Dr. Zhang's gel, however, can be loaded with different chemicals to stimulate various biological processes at the site of injury. In previous research done on rats, she was able to use the gel to help re-establish full blood supply at the site of brain injury. This could help create a better environment for donor cells.</p><p class=\"justify\">In a follow-up study, Dr. Zhang loaded the gel with immature stem cells, as well as the chemicals they needed to develop into full-fledged adult brain cells. When rats with severe brain injuries were treated with this mixture for eight weeks, they showed signs of significant recovery.</p><p class=\"justify\">The new gel could treat patients at varying stages following injury, and is expected to be ready for testing in humans in about three years.</p>";
+		
+		var text_2 = "<p class=\"justify\">Investigators at the University of Michigan's Institute for Social Research have unequivocally demonstrated that our parents often get on our nerves -- and we on theirs. \"The parent-child relationship is one of the longest-lasting social ties human beings establish,\" said Kira Birditt, the study's lead. \"This tie is often highly positive and supportive but it also commonly includes feelings of irritation, tension and ambivalence.\"</p><p class=\"justify\">Unsurprisingly, the survey of nearly 500 American parents and their age-22-and-older offspring revealed that the touchiest issues were \"lifestyle choices\": whom we date, our money habits, our housekeeping savvy. Parents reported more tensions with daughters than sons. And daughters and sons noted more issues with Mom than Dad. Birditt suggests that this is because women tend to pursue more intimate relationships with more frequent contact -- thus more opportunity for things to get ugly.</p><p class=\"justify\">Overall, the study showed that the parents, not the children, felt more upset by these tussles. And why not? Mom calls with sage advice. We shunt her to voicemail. She phones back the next day, and guilt compels us to answer. Just about to call you! Can we reschedule for 8:30? Sorry, must run! How irritating.</p><p class=\"justify\">The Michigan study also found that parents get more prickly as we age. This trend came as a surprise to Birditt -- but I suspect it's a familiar feeling to many of us with aging parents. Their dependence is increasing. Our lives, though, become more filled with people that depend on us, leaving us to carefully juggle our attentions.</p><p class=\"justify\">What to do? Voicemail and other avoidance tactics will get you nowhere, says Burditt. Her other research efforts are showing that tackling issues as they come up leads to smoother relationships. Sure, sure -- sounds logical. But caller ID is so much easier.</p>";
+		
+		var text_3 = "<p class=\"justify\">Sometimes people are hard to read. Why not leave all that work to a computer? Perhaps you could use an experimental app that works in Google Glass. Aim Glass's camera at a person's face and the app reads the human's facial expression and tells you to what extent the person is feeling happy, sad, angry, or surprised. As a bonus, the app guesses the person's age and gender. Evaluating whether you want to hit on that person is still up to you.</p><p class=\"justify\">Kidding aside, an app like this could help people with conditions, such as autism, that makes it hard for them to read emotions. The app is supposed to work entirely on Google Glass' CPU, so it doesn't need to send the images Glass records to the cloud. That means the app could work when the glasses don't have a data connection, which is nice. It could also keep the images the glasses record for the app more secure—the images are supposed to stay on the device and never enter the cloud.</p><p class=\"justify\">Over the past few years, engineers working for several universities and companies have tried to make emotion-reading algorithms. Some are already on the market. Usually, the idea is that such algorithms could go into software for marketing departments (How is this new ad making viewers feel?), or into adaptive computer games (How is this level making players feel?). It's also a step toward loading the ability to read people's emotions into robots. It would certainly behoove a customer service robot, for example, to be able to sense frustration and confusion in people's faces.</p><p class=\"justify\">Making a face-reading algorithm for private individuals to use is an unusual, but not unheard-of, idea. The market for this may not be large at present—in addition to needing the software, potential buyers have to be able to afford Google Glass—but perhaps what's especially useful here is knowing that this kind of computing can be miniaturized to something as small and light as Google Glass. That means it could show up anywhere.</p>";
 
         var debrief = '<div id="instructions"><p>Thank you for participating! Press enter to continue.</p></div>';
-
-        // Generating Random Order for Stimuli
-		
-		var stimuli = [
-			{image: "img/left_1.png", data: { stimulus_type: "left" }},
-			{image: "img/left_2.png", data: { stimulus_type: "left" }},
-			{image: "img/left_3.png", data: { stimulus_type: "left" }}, 
-			{image: "img/right_1.png", data: { stimulus_type: "right" }},
-			{image: "img/right_2.png", data: { stimulus_type: "right" }},
-			{image: "img/right_3.png", data: { stimulus_type: "right" }},
-		];
-        
-		var trial_info = jsPsych.randomization.repeat(stimuli, n_trials_per_stimulus, true);
         
         // Define experiment blocks
         var instruction_block = {
                 type: "text",
-                text: [welcome_message, instructions],
+				cont_key: [13],
+                text: [instructions],
+                timing_post_trial: 0
+            };
+			
+		var text_1 = {
+                type: "text",
+				cont_key: [13],
+                text: [text_1],
+                timing_post_trial: 0
+            };
+		
+		var text_2 = {
+                type: "text",
+				cont_key: [13],
+                text: [text_2],
+                timing_post_trial: 0
+            };
+			
+		var text_3 = {
+                type: "text",
+                text: [text_3],
                 timing_post_trial: 0
             };
         
-        var test_block = {
-                type: "single-stim",
-                stimuli: trial_info.image,
-                choices: [17, 39],
-                data: trial_info.data,
-				timing_post_trial: function() {
-					return 500;
-				}
+		var questions = ["Type all the information you can remember about the text:", "What is the general idea of the text?"];
+		
+        var questions_1 = {
+                type: "survey-textarea",
+				questions: [questions]
+            };
+			
+		var questions_2 = {
+                type: "survey-textarea",
+				questions: [questions]
+            };
+			
+		var questions_3 = {
+                type: "survey-textarea",
+				questions: [questions]
             };
             
         var debrief_block = {
                 type: "text",
                 text: [debrief]
             };
-            
-		// functions to be called
-        var addLine = function() { 
-            $("#jspsych_target").css("background", "url(img/bg.png) center center repeat-y");
-        };
-		
-		var removeLine = function(){
-			$("#jspsych_target").css("background", "");
-		}
-
-        // declare the blocks.
-        var function_addLine = {type:'call-function', func: addLine};
-		var function_removeLine = {type:'call-function', func: removeLine};
 		
 		function saveData(filename, filedata){
 		   $.ajax({
@@ -85,21 +88,18 @@
 			  url: 'php/save_data.php', // this is the path to the PHP script
 			  data: {filename: filename, filedata: filedata},
 			  success: function(){
-				  $("#jspsych_target").html("<p><a href=\"http://localhost/jsPsych-quickstart/\">Restart experiment</a></p><p><a href=\"http://localhost/jsPsych-quickstart/immediate_recall.html\">Go to next experiment.</a></p>");
+				  $("#jspsych_target").html("<p><a href=\"http://localhost/jsPsych-quickstart/immediate_recall.html\">Restart experiment</a></p>");
 			  }
 		   });
 		}
 		
-		function start_experiment() {
-			jsPsych.init({
-				display_element: $('#jspsych_target'),
-				experiment_structure: [instruction_block, function_addLine, test_block, function_removeLine, debrief_block],
-				on_finish: function(data){
-					saveData("visual-spatialTask_" + $.now() + ".csv", jsPsych.dataAPI.dataAsCSV());
-				}
-			});
-		}
-		
-		jsPsych.preloadImages(trial_info.image, function() { start_experiment(); });
+		// launch jspsych
+		jsPsych.init({
+			display_element: $('#jspsych_target'),
+			experiment_structure: [instruction_block, text_1, questions_1, text_2, questions_2, text_3, questions_3, debrief_block],
+			on_finish: function(data){
+				saveData("immediateRecall_" + $.now() + ".csv", jsPsych.dataAPI.dataAsCSV());
+			}
+		});
     </script>
 </html>
